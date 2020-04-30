@@ -9,7 +9,7 @@ module.exports = {
     name: "PUSENDRA CHAUDHARY",
     bio: "The best way to learn code is to code.",
     contacts: {
-      linkedin: "https://www.linkedin.com/in/pusendra-c-ba1138112/",
+      linkedin: "https://www.linkedin.com/in/pusendra-c-ba1138112",
       github: "https://github.com/Pusendra",
       twitter: "https://twitter.com/cpusendra",
     },
