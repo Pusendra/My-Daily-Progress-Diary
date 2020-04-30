@@ -3,7 +3,7 @@
 module.exports = {
   url: "https://developer-diary.netlify.com",
   title: "Developer Diary",
-  tagline: "Self taught web developer",
+  tagline: "On a journey to become a Web Developer",
   copyright: "© 2020 pusendra, All rights reserved",
   author: {
     name: "PUSENDRA CHAUDHARY",
