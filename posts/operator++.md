@@ -53,30 +53,23 @@ Have you read any part of the specification if not you can read here : https://w
 
 Lets see what does JS specification says about ++ operator.
 
-```12.4.6.1Runtime Semantics: Evaluation
+```
+12.4.6.1Runtime Semantics: Evaluation
 UpdateExpression:++UnaryExpression
 Let expr be the result of evaluating UnaryExpression.
 Let oldValue be ? ToNumber(? GetValue(expr)).
 Let newValue be the result of adding the value 1 to oldValue, using the same rules as for the + operator (see 12.8.5).
 Perform ? PutValue(expr, newValue).
-Return newValue.```
-
-
-Lets turn above algorithm into a function and see how x++ operator works>
+Return newValue.
 ```
-function plusPlus(orginal_val){
-let orginal_coerced_val = Number(orginal_val);
-orginal_val = orginal_coerced_val + 1;
-return orginal_val;
 
-}
-```
 <br>
-
 ```
 let x= "6";
 plusPlus(x); //7
 ```
+<br>
+
 
 What ++ operator is doing under the hood?
 
