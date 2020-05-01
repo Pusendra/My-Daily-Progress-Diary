@@ -64,9 +64,11 @@ Return newValue.
 ```
 
 <br>
+
 ```
 let x= "6";
 plusPlus(x); //7
+
 ```
 <br>
 
