@@ -1,120 +1,87 @@
 ---
-title: 'JavaScript Regular Expressions and the Test() Method'
+title: 'How ++ operator works in javascript?'
 tags: ["javascript"]
 published: true
-date: '2019-01-06'
+date: '2020-05-01'
 ---
 
-[Video at YouTube](https://youtu.be/vAP8NLDzGwc). <br>
+Have you wondered how the javascript '++' operater works?
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vAP8NLDzGwc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
----
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sapien nisi, consequat nec dolor ut, lobortis vestibulum nunc. Nulla facilisi. Suspendisse leo urna, pulvinar ut pretium sit amet, consequat eget sapien. Nam ultricies in nulla finibus feugiat. Maecenas lacinia, lorem quis egestas convallis, tortor nunc consectetur est, vel finibus odio dui et nunc.
+Let's see if you could answer these questions about javascript '++' operator.
 ### noGlobalFlag.js
 
 ```
-let str1 = "The sun is out today.";
-let str2 = "Let's go for a run today."
-let str3 = "Regular expressions can sometimes be fun."
-let str4 = "A hot dog without a bun ain't no fun."
-let unRegex = /.un/;
-console.log(unRegex.test(str1));
+let x = 30;
 
-console.log(unRegex.test(str2));
+x++ // What is the value of x here? 30
 
-console.log(unRegex.test(str3));
+x   // what is the value of x here? 31
 
-console.log(unRegex.test(str4));
+
+++x //?? 32
+
+x   //?? 32
 ```
 <br>
 
-Proin quis ante ut felis lacinia dignissim quis ac risus. Vestibulum a maximus est. Pellentesque malesuada eros ac diam aliquam, non pulvinar magna sodales.
+Does your answer matched with the above answer I have given? If not you need to understand how the javascript ++ operator works.
+
+Until I watched kyle simpson course and read the javascript spec I thought ++x and x++ work as follows....
+
 
 ```
-true
-true
-true
-true
-[Finished in 0.883s]
+x = x+1;
+```
+<br>
+Did you also thought that ++ operator works likes this ?
+
+lets see what x = x+1; does for string.
+
+```
+let x = "6";
+x = x+1 //?? "61"
+
+let y = "6";
+y++ // ?? 6
+y //7
 ```
 <br>
 
- Fusce hendrerit malesuada quam, ut accumsan massa efficitur et. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam vitae ornare sem, eget volutpat mauris. Praesent aliquet condimentum dui non bibendum. Nam dapibus rutrum mi sit amet luctus. Proin id vehicula risus. Nullam dictum, elit sit amet molestie eleifend, felis dolor scelerisque risus, sed dictum odio dolor id justo. Integer consectetur dui non tortor scelerisque, non vulputate sem laoreet.
+Did you see how x=x+1; and y++; works diffrently?
 
-```
-true
-true
-true
-false
-[Finished in 0.892s]
-```
-<br>
+Have you read any part of the specification if not you can read here : https://www.ecma-international.org/ecma-262/10.0/index.html#sec-update-expressions
 
-Nunc blandit purus sit amet justo vehicula, at venenatis ante tempus. Integer sagittis ultrices lorem, ut faucibus erat molestie quis. Phasellus semper orci nisl, egestas maximus risus porta sit amet. Fusce vitae egestas sem. Nunc sagittis, erat sodales maximus tempus, magna diam iaculis ex, ut feugiat odio libero sit amet lectus. Suspendisse elit turpis, volutpat laoreet consequat ac, ultricies eu sem. Donec non orci in justo porta iaculis. Donec pulvinar nunc quis viverra volutpat. Quisque et orci non enim sodales eleifend. Etiam in enim id nulla posuere lacinia. Ut rutrum pharetra nisi quis feugiat.
+Lets see what does JS specification says about ++ operator.
+
+12.4.6.1Runtime Semantics: Evaluation
+UpdateExpression:++UnaryExpression
+Let expr be the result of evaluating UnaryExpression.
+Let oldValue be ? ToNumber(? GetValue(expr)).
+Let newValue be the result of adding the value 1 to oldValue, using the same rules as for the + operator (see 12.8.5).
+Perform ? PutValue(expr, newValue).
+Return newValue.
 
 ### globalFlag.js
+Lets turn above algorithm into a function and see how x++ operator works>
 ```
-let str1 = "The sun is out today.";
-let str2 = "Let's go for a run today."
-let str3 = "Regular expressions can sometimes be fun."
-let str4 = "A hot dog without a bun ain't no fun."
-let unRegex = /.un/g;
+function plusPlus(orginal_val){
+let orginal_coerced_val = Number(orginal_val);
+orginal_val = orginal_coerced_val + 1;
+return orginal_val;
 
-console.log(unRegex.test(str1));
-console.log(unRegex.lastIndex);
-
-console.log(unRegex.test(str2));
-console.log(unRegex.lastIndex);
-
-console.log(unRegex.test(str3));
-console.log(unRegex.lastIndex);
-
-console.log(unRegex.test(str4));
-console.log(unRegex.lastIndex);
+}
 ```
 <br>
 
-Cras arcu lectus, euismod a lacinia a, cursus vitae magna. Aenean ultricies, enim id pharetra ultricies, ligula lectus congue tellus, ac lobortis ex elit at nulla. Sed lobortis vitae tortor sed laoreet. Praesent porta bibendum ullamcorper.
-
 ```
-true
-7
-true
-18
-true
-40
-false
-0
-[Finished in 0.911s]
-```
-<br>
-
-Integer fermentum euismod risus, vitae fringilla erat condimentum at. Suspendisse luctus egestas dui, eu dictum sem tincidunt sed. Sed efficitur eget orci eu dictum. Etiam faucibus, enim nec tincidunt sollicitudin, diam neque ultricies magna, eget ultrices sem tortor non justo. Vestibulum viverra tincidunt elit sit amet gravida. Morbi sed tempus odio. Nunc efficitur ultricies elit et porta. Praesent finibus placerat felis, vitae efficitur ligula sagittis non. Nam fringilla malesuada ligula ullamcorper dignissim.
-
-Morbi mauris lacus, vehicula eget ullamcorper et, fringilla at ipsum. Nam tempus felis ex, congue varius urna consectetur eget. Cras tempor condimentum accumsan. In hac habitasse platea dictumst. Nulla pharetra mauris enim, quis dictum ipsum dictum sed. Sed luctus eros volutpat, luctus augue et, tempus ante. Sed imperdiet diam id luctus faucibus. Sed ullamcorper suscipit arcu, in dictum lectus ultricies et. Donec accumsan a ipsum sed aliquet. Nulla auctor justo eget tincidunt egestas. Cras blandit, ante vitae facilisis hendrerit, justo mauris fermentum diam, id congue diam velit eu ipsum. Nullam pulvinar auctor tincidunt. Maecenas felis velit, bibendum ac purus nec, cursus lacinia nulla. Sed posuere orci sapien, id accumsan eros feugiat vel. Aenean convallis lacinia orci. In metus elit, iaculis vitae nisi vel, iaculis vehicula mi.
-
-```
-let str1 = "The sun is out today.";
-let str2 = "Let's go for a run today."
-let str3 = "Regular expressions can sometimes be fun."
-let str4 = "A hot dog without a bun ain't no fun."
-let unRegex = /.un/g;
-
-var myMatches = str4.match(unRegex);
-console.log(myMatches);
+let x= "6";
+plusPlus(x); //7
 ```
 
-<br>
+What ++ operator is doing under the hood?
 
-Nam elementum augue vel nulla consectetur elementum.
+It is coercing orginal_val (i.e type:string)  to number and adding 1 with the coerced value and storing it in orginal_val.
 
-```
-[ 'bun', 'fun' ]
-[Finished in 1.845s]
-```
 
-<br>
 
-[MDN Web Docs - test()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)<br>
-[MDN Web Docs - exec()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)
 
