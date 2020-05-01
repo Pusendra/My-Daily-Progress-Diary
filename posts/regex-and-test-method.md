@@ -8,7 +8,7 @@ date: '2020-05-01'
 Have you wondered how the javascript '++' operater works?
 
 Let's see if you could answer these questions about javascript '++' operator.
-### noGlobalFlag.js
+
 
 ```
 let x = 30;
@@ -47,21 +47,21 @@ y //7
 ```
 <br>
 
-Did you see how x=x+1; and y++; works diffrently?
+Did you see how ```x=x+1;``` and ```y++;``` works diffrently?
 
 Have you read any part of the specification if not you can read here : https://www.ecma-international.org/ecma-262/10.0/index.html#sec-update-expressions
 
 Lets see what does JS specification says about ++ operator.
 
-12.4.6.1Runtime Semantics: Evaluation
+```12.4.6.1Runtime Semantics: Evaluation
 UpdateExpression:++UnaryExpression
 Let expr be the result of evaluating UnaryExpression.
 Let oldValue be ? ToNumber(? GetValue(expr)).
 Let newValue be the result of adding the value 1 to oldValue, using the same rules as for the + operator (see 12.8.5).
 Perform ? PutValue(expr, newValue).
-Return newValue.
+Return newValue.```
 
-### globalFlag.js
+
 Lets turn above algorithm into a function and see how x++ operator works>
 ```
 function plusPlus(orginal_val){
