@@ -101,8 +101,7 @@ and then add the rest of your content below the frontmatter.
 This starter already includes the tech tags you can see in the live demo. To use them, add the appropriate tag name to the `tags` array in the frontmatter of your post. Consult the `config.js` file to see the tag properties and get the tag name to be supplied to the `tags` array in the frontmatter.<br>
 To make a new tag, create a new "label" in `config.js`, find a suitable svg icon, and paste the svg path in as the value for the "name" property of the label. Have a look at the existing labels in the `config.js` file and all should soon be clear. A good place to look for svg icons is at [simple icons](https://simpleicons.org/). 
 
-## Authors
-- Will Ward [@willjw3](https://github.com/willjw3)
+
 
 ## Contribute
 - Fork the repo
